@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Nomalo</string>
+    <string name="Esperando">esperando...</string>
+    <string name="Agenda">AGENDA</string>
+</resources>
