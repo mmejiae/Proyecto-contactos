@@ -3,4 +3,19 @@
     <string name="Esperando">esperando...</string>
     <string name="Error_Login1">"Error, Todos los campos son requeridos"</string>
     <string name="Agenda">AGENDA</string>
+    <string name="Nombre">Nombre</string>
+    <string name="Email">Email</string>
+    <string name="Celular">Celular</string>
+    <string name="Telefono">Telefono</string>
+
+    <string-array name="Grupo">
+
+        <item>Seleccione Departamento</item>
+        <item>Antioquia</item>
+
+        <item>Cundinamarca</item>
+
+        <item>Santander</item>
+
+    </string-array>
 </resources>

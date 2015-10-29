@@ -27,8 +27,21 @@ public class CacheManager {
         mEditor.putBoolean(KeysShared.KEY_FIRST, true);
         mEditor.commit();
     }
-    //public Contact getUser(){} me devuelva la informacion del usuario
-public boolean isLoggin(){
+    public Contact getUser(){
+
+        String name = pref.getString(KeysShared.KEY_NAME, "");
+        String email = pref.getString(KeysShared.KEY_EMAIL, "");
+        String cel = pref.getString(KeysShared.KEY_CEL, "");
+        String phone = pref.getString(KeysShared.KEY_PHONE, "");
+
+        Contact c = new Contact(name, email, cel, phone);
+
+        return c;
+    }
+
+
+
+    public boolean isLoggin(){
     return pref.getBoolean(KeysShared.KEY_FIRST,false);
 }
     class KeysShared{
@@ -37,7 +50,7 @@ public boolean isLoggin(){
         final static String KEY_CEL="_cel";
         final static String KEY_PHONE="_phone";
         final static String KEY_FIRST="_first";
-        //cordinator layout en activity main
+
 
     }
 }

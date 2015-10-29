@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_login)
     public void clickLogin(View v) {
-        valid=true;
+        boolean valid=true;
 
         String name = etName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
