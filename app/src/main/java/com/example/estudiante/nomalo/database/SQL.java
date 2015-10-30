@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.estudiante.nomalo.model.Contact;
 
+import java.util.ArrayList;
+
 /**
  * Created by Estudiante on 29/10/2015.
  */
@@ -141,5 +143,10 @@ public class SQL extends SQLiteOpenHelper {
         } catch (SQLiteException e) {
         }
         return contact;
+    }
+    public ArrayList<Contact>getAll(){
+        ArrayList<Contact> al =new ArrayList<>();
+
+        return al;
     }
 }
