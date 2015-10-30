@@ -5,16 +5,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.estudiante.nomalo.MainActivity;
 import com.example.estudiante.nomalo.R;
+import com.example.estudiante.nomalo.database.SQL;
 import com.example.estudiante.nomalo.model.Contact;
 import com.example.estudiante.nomalo.preference.CacheManager;
 
@@ -34,6 +38,8 @@ public class NuevoContacto extends Fragment {
     @Bind(R.id.Celular) EditText celular;
     @Bind(R.id.Telefono) EditText telefono;
     @Bind(R.id.Boton) Button boton;
+    @Bind(R.id.grupo_spinner) Spinner spinner;
+    private SQL sql;
 
     @OnClick(R.id.Boton)
     public void clickLogin(View v) {
@@ -57,8 +63,16 @@ public class NuevoContacto extends Fragment {
                 showError("No es un celular valido", v);
             } else if (phonetab.length() > 0 && phonetab.length() != 7) {
                 showError("No es un telefono valido", v);
+            }else{
+                Contact contact= new Contact(0,nombretab,emailtab,celtab,phonetab,"",spinner.getSelectedItem().toString());
+
+                long id = sql.insertContact(contact);
+                ((MainActivity)getActivity()).newData(id);
             }
+
+
         } else {
+
             showError("Error, Todos los campos son requeridos", v);
         }}
 
@@ -72,6 +86,7 @@ public class NuevoContacto extends Fragment {
         @Override
         public void onCreate (Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
+            sql= new SQL(getContext());
             cacheManager = new CacheManager(getContext());
 
         }

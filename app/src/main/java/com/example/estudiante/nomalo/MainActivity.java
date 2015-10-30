@@ -20,18 +20,24 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.tab_layout) TabLayout mTablayout;
     @Bind(R.id.viewpager) ViewPager mViewPager;
 
+    DummyFragment dummy;
+    NuevoContacto nuevo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        dummy=new DummyFragment();
+        nuevo=new NuevoContacto();
+
         setSupportActionBar(mtoolbar);
         mTablayout.addTab(mTablayout.newTab().setText("TAB1"));
         mTablayout.addTab(mTablayout.newTab().setText("NUEVO CONTACTO"));
 
         ViewPagerAdapter viewPagerAdapter= new ViewPagerAdapter((getSupportFragmentManager()));
-        viewPagerAdapter.addFrag(new DummyFragment());
-        viewPagerAdapter.addFrag(new NuevoContacto());
+        viewPagerAdapter.addFrag(dummy);
+        viewPagerAdapter.addFrag(nuevo);
 
         mViewPager.setAdapter(viewPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTablayout));
@@ -39,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
         mTablayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
               switch (tab.getPosition()) {
+
                   case 0:
                   Log.d("AGENDACONTACTOS", "TAB#1");
                   break;
@@ -62,5 +70,9 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
+    }
+
+    public void newData(long id){ //patron observer
+        dummy.refresh(id);
     }
 }
